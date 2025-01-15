@@ -26,6 +26,6 @@ jobs:
 
       - name: Mypy checking
         run: poetry run task mypy
-        
+
       - name: Running tests with pytest
         run: poetry run task test

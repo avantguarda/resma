@@ -23,7 +23,7 @@ def get_template(jinja_env, page):
         return jinja_env.get_template(page.metadata.get('template'))
     except TemplateNotFound:
         raise TemplateNotFound(
-            f"Template {page.metadata.get('template')} not found"
+            f'Template {page.metadata.get("template")} not found'
         )
 
 
