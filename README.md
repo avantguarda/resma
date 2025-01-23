@@ -7,7 +7,7 @@
 As of now, you can use `pipx` to install Resma in your machine:
 
 ```sh
-pipx install git+https://github.com/brasilisclub/resma-cli
+pipx install git+https://github.com/brasilisclub/resma
  ```
 
 ## Setting Up the Development Environment
