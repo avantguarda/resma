@@ -9,11 +9,11 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
 dependencies = [
-	"typer (>=0.15.1,<0.16.0)",
 	"jinja2 (>=3.1.5,<4.0.0)",
 	"markdown (>=3.7,<4.0)",
 	"python-frontmatter (>=1.1.0,<2.0.0)",
 	"toml (>=0.10.2,<0.11.0)",
+	"cyclopts (>=3.4.1,<4.0.0)",
 ]
 
 [project.scripts]
