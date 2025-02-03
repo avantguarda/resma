@@ -39,7 +39,7 @@ def validate_resma_project():
 
     if not config_file.exists():
         console.print('Not a resma project', style='white on red')
-        raise cyclopts.CycloptsError()
+        return 1
 
     with config_file.open('rb') as f:
         config_toml = tomllib.load(f)
@@ -51,7 +51,7 @@ def validate_resma_project():
         console.print(
             'config.toml should have a resma table', style='white on red'
         )
-        raise cyclopts.CycloptsError()
+        return 1
 
 
 @app.command()
@@ -63,7 +63,7 @@ def start(name: str):
         project_dir.mkdir()
     except FileExistsError as e:
         print('File already exists. Detail: ', e)
-        raise cyclopts.CycloptsError() from e
+        return 1
 
     (project_dir / 'content').mkdir()
     (project_dir / 'templates').mkdir()
@@ -114,7 +114,7 @@ def build():
             'Content and Templates directories cannot be empty',
             style=error,
         )
-        raise cyclopts.CycloptsError()
+        return 1
 
     # Styles and Static content should be on public
     for dir in [
@@ -175,7 +175,7 @@ def build():
 
     except Exception as e:
         console.print(f'Error: {e}', style=error)
-        raise cyclopts.CycloptsError from e
+        return 1
 
 
 class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
@@ -202,13 +202,13 @@ def serve(port: int = 8080):
     Handler = CustomHTTPRequestHandler
     try:
         os.chdir('public')
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         console.print('public folder not found', style=error)
         resma_build = Text('resma build', style=success)
         console.print(
             f'Run {resma_build.markup} before running "resma serve" again'
         )
-        raise cyclopts.CycloptsError() from e
+        return 1
 
     with socketserver.TCPServer(('', port), Handler) as httpd:
         console.print(
