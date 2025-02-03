@@ -175,8 +175,8 @@ def build():
         console.print('Site built successfully', style=success)
 
     except Exception as e:
-        console.print(f'Error: {e}', style=error)
-        return 1
+        e_console.print(f'Error: {e}', style=error)
+        sys.exit(1)
 
 
 class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
