@@ -3,6 +3,7 @@ import locale
 import os
 import shutil
 import socketserver
+import sys
 import tomllib
 from pathlib import Path
 from typing import Final
@@ -24,6 +25,7 @@ app = cyclopts.App(
     name='resma',
     help='Use resma --help to see the available commands',
     version=__version__,
+    console=console,
 )
 
 CURRENT_SCRIPT_PATH: Final[Path] = Path(__file__).resolve()
@@ -40,7 +42,7 @@ def validate_resma_project():
 
     if not config_file.exists():
         e_console.print('Not a resma project', style='white on red')
-        return SystemExit(1)
+        sys.exit(1)
 
     with config_file.open('rb') as f:
         config_toml = tomllib.load(f)
@@ -50,7 +52,7 @@ def validate_resma_project():
 
     if not resma_table:
         e_console.print('config.toml should have a resma table', style=error)
-        return SystemExit(1)
+        sys.exit(1)
 
 
 @app.command()
@@ -62,7 +64,7 @@ def start(name: str):
         project_dir.mkdir()
     except FileExistsError as e:
         e_console.print(f'File {e.filename} already exists', style=error)
-        raise SystemExit(1) from e
+        sys.exit(1)
 
     (project_dir / 'content').mkdir()
     (project_dir / 'templates').mkdir()
@@ -113,7 +115,7 @@ def build():
             'Content and Templates directories cannot be empty',
             style=error,
         )
-        raise SystemExit(1)
+        sys.exit(1)
 
     # Styles and Static content should be on public
     for dir in [
@@ -202,12 +204,12 @@ def serve(port: int = 8080):
     try:
         os.chdir('public')
     except FileNotFoundError:
-        console.print('public folder not found', style=error)
+        e_console.print('public folder not found', style=error)
         resma_build = Text('resma build', style=success)
-        console.print(
+        e_console.print(
             f'Run {resma_build.markup} before running "resma serve" again'
         )
-        return 1
+        sys.exit(1)
 
     with socketserver.TCPServer(('', port), Handler) as httpd:
         console.print(
