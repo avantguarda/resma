@@ -19,6 +19,7 @@ from .process_md import process_markdown
 from .styles import error, success, warning
 
 console = Console()
+e_console = Console(stderr=True)
 app = cyclopts.App(
     name='resma',
     help='Use resma --help to see the available commands',
@@ -38,8 +39,8 @@ def validate_resma_project():
     config_file = Path('.') / 'config.toml'
 
     if not config_file.exists():
-        console.print('Not a resma project', style='white on red')
-        return 1
+        e_console.print('Not a resma project', style='white on red')
+        return SystemExit(1)
 
     with config_file.open('rb') as f:
         config_toml = tomllib.load(f)
@@ -48,10 +49,8 @@ def validate_resma_project():
     resma_table = config_toml.get('resma')
 
     if not resma_table:
-        console.print(
-            'config.toml should have a resma table', style='white on red'
-        )
-        return 1
+        e_console.print('config.toml should have a resma table', style=error)
+        return SystemExit(1)
 
 
 @app.command()
@@ -62,8 +61,8 @@ def start(name: str):
     try:
         project_dir.mkdir()
     except FileExistsError as e:
-        print('File already exists. Detail: ', e)
-        return 1
+        e_console.print(f'File {e.filename} already exists', style=error)
+        raise SystemExit(1) from e
 
     (project_dir / 'content').mkdir()
     (project_dir / 'templates').mkdir()
@@ -110,11 +109,11 @@ def build():
         directories['templates'].iterdir()
     )
     if content_is_empty or template_is_empty:
-        console.print(
+        e_console.print(
             'Content and Templates directories cannot be empty',
             style=error,
         )
-        return 1
+        raise SystemExit(1)
 
     # Styles and Static content should be on public
     for dir in [
