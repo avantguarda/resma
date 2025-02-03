@@ -9,10 +9,11 @@ from resma.main import app
 
 def test_start(temp_dir, monkeypatch, capsys: pytest.CaptureFixture):
     monkeypatch.chdir(temp_dir)
-    app('start project')
+    result = app('start project')
 
     output = Text.from_ansi(capsys.readouterr().out).plain
 
+    assert not result
     assert 'Project project created successfully' == output
 
 
@@ -93,8 +94,9 @@ def test_build_resma_table_not_found_in_config_toml(
     ids=['default', 'help', 'version'],
 )
 def test_main(args, expected_output, capsys: pytest.CaptureFixture):
-    app(args)
+    result = app(args)
 
+    assert not result
     assert expected_output in capsys.readouterr().out
 
 
@@ -102,6 +104,7 @@ def test_build_full_resma_project_ok(
     full_resma_project, monkeypatch, capsys: pytest.CaptureFixture
 ):
     monkeypatch.chdir(full_resma_project)
-    app('build')
+    result = app('build')
 
+    assert not result
     assert 'Site built successfully' in capsys.readouterr().out
