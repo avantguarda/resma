@@ -2,7 +2,6 @@ import http.server
 import locale
 import os
 import shutil
-import socketserver
 import sys
 import tomllib
 from pathlib import Path
@@ -211,7 +210,7 @@ def serve(port: int = 8080):
         )
         sys.exit(1)
 
-    with socketserver.TCPServer(('', port), Handler) as httpd:
+    with http.server.HTTPServer(('', port), Handler) as httpd:
         console.print(
             f'Serving at [link=http://127.0.0.1:{port}]http://127.0.0.1:{port}[/link]',
             style=success,
