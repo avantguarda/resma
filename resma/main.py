@@ -178,28 +178,9 @@ def build():
         sys.exit(1)
 
 
-class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
-    def do_GET(self):
-        if (
-            not self.path.endswith('/')  # not a folder
-            and not Path(f'./{self.path}').is_dir()
-            and 'static' not in self.path
-            and 'styles' not in self.path
-        ):
-            self.path += '.html'
-        elif (
-            self.path.endswith('/')
-            and Path(f'./{self.path[:-1]}.html').exists()
-        ):
-            self.path = self.path[:-1] + '.html'  # remove trailing slash
-
-        return super().do_GET()
-
-
 @app.command()
 def serve(port: int = 8080):
     """Run a http server from public folder"""
-    Handler = CustomHTTPRequestHandler
     try:
         os.chdir('public')
     except FileNotFoundError:
@@ -210,7 +191,9 @@ def serve(port: int = 8080):
         )
         sys.exit(1)
 
-    with http.server.HTTPServer(('', port), Handler) as httpd:
+    with http.server.HTTPServer(
+        ('', port), http.server.SimpleHTTPRequestHandler
+    ) as httpd:
         console.print(
             f'Serving at [link=http://127.0.0.1:{port}]http://127.0.0.1:{port}[/link]',
             style=success,
