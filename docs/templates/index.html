@@ -3,26 +3,28 @@
 <link rel="stylesheet" href="/styles/homepage.css" />
 {% endblock header %} {% block content %}
 <main>
-    <section class="space-between">
-        <header>
-            <nav>
-                <a href="/">Resma</a>
-            </nav>
-            <nav>
-                <a href="/docs">Documentation</a>
-            </nav>
-        </header>
+	<header>
+		<nav>
+			<a href="/">Resma</a>
+		</nav>
+		<nav>
+			<a href="/docs">Documentation</a>
+		</nav>
+    </header>
+	<section>
         <div>{{ page.content }}</div>
-        <footer>
-            <nav>
-                <a href="https://github.com/brasilisclub/resma" target="_blank">
-                    Built with <b>Resma</b>
-                </a>
-                <a href="https://github.com/brasilisclub/resma" target="_blank">
-                    From <b>Brazil</b> with Love
-                </a>
-            </nav>
-        </footer>
-    </section>
+		<div>
+			<a href="/docs">
+				Read the docs
+			</a>
+		</div>
+	</section>
+	<footer>
+		<nav>
+		<a href="https://github.com/brasilisclub/resma" target="_blank">
+			Built with <b>Resma</b>
+		</a>
+		</nav>
+	</footer>
 </main>
 {% endblock content %}

@@ -1,6 +1,6 @@
 +++
 title = 'resma docs'
-template = 'index.html'
+template = 'docs/index.html'
 +++
 
 # Docs initial page

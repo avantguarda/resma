@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	
-<title>resma docs</title>
+{% extends "base.html" %} {% block header %}
+<title>{{ page.title }}</title>
 <link rel="stylesheet" href="/styles/homepage.css" />
-
-</head>
-<body>
-	
+{% endblock header %} {% block content %}
 <main>
     <section class="space-between">
         <header>
@@ -22,8 +12,7 @@
                 <a href="/docs">Documentation</a>
             </nav>
         </header>
-        <div><h1>Docs initial page</h1>
-<p>Docs will be here</p></div>
+        <div>{{ page.content }}</div>
         <footer>
             <nav>
                 <a href="https://github.com/brasilisclub/resma" target="_blank">
@@ -33,6 +22,4 @@
         </footer>
     </section>
 </main>
-
-</body>
-</html>
+{% endblock content %}
