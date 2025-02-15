@@ -4,10 +4,11 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
     strategy:
       matrix:
         python-version: ["3.12", "3.13"]
+        os: [ubuntu, windows, macos]
 
     steps:
       - name: Checkout
@@ -26,9 +27,11 @@ jobs:
 
       - name: Running linters
         run: poetry run task lint
+        if: ${{ matrix.os == 'ubuntu' }}
 
       - name: Mypy checking
         run: poetry run task mypy
+        if: ${{ matrix.os == 'ubuntu'  }}
 
       - name: Running tests with pytest
         run: poetry run task test
