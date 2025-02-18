@@ -9,6 +9,7 @@ from typing import Final
 
 import cyclopts
 from jinja2 import Environment, FileSystemLoader
+from livereload import Server
 from rich.console import Console
 from rich.text import Text
 
@@ -203,3 +204,15 @@ def serve(port: int = 8080):
         except KeyboardInterrupt:
             httpd.shutdown()
             console.print('\nLocal server stopped.', style=warning)
+
+
+@app.command()
+def dev(port: int = 8080):
+    """Run resma in development mode"""
+    build()
+    server = Server()
+    server.watch('./content', build)
+    server.watch('./static', build)
+    server.watch('./styles', build)
+    console.print('Starting development server...', style=success)
+    server.serve(port=port, root='public')
