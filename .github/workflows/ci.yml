@@ -3,6 +3,33 @@ name: Continous Integration
 on: [push, pull_request]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Installing Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Installing poetry
+        run: pipx install poetry
+
+      - name: Installing dependencies
+        run: poetry install
+
+      - name: Running linters
+        run: poetry run task lint
+
+      - name: Mypy checking
+        run: poetry run task mypy
+
   test:
     runs-on: ${{ matrix.os }}-latest
     strategy:
@@ -24,14 +51,6 @@ jobs:
 
       - name: Installing dependencies
         run: poetry install
-
-      - name: Running linters
-        run: poetry run task lint
-        if: ${{ matrix.os == 'ubuntu' }}
-
-      - name: Mypy checking
-        run: poetry run task mypy
-        if: ${{ matrix.os == 'ubuntu'  }}
 
       - name: Running tests with pytest
         run: poetry run task test
