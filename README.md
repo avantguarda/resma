@@ -12,7 +12,7 @@ pipx install git+https://github.com/brasilisclub/resma
 
 ## Setting Up the Development Environment
 
-To set up the development environment for Resma, you'll need to have Python 3.12 installed. You can use [Poetry](https://python-poetry.org/) to manage dependencies and run commands.
+To set up the development environment for Resma, you'll need to have Python 3.12 installed. You can use [uv](https://docs.astral.sh/uv/) to manage dependencies and run commands.
 
 1. **Clone the Repository:**
 
@@ -21,14 +21,14 @@ To set up the development environment for Resma, you'll need to have Python 3.12
    cd resma
    ```
 
-2. **Install Poetry:**
+2. **Install uv:**
 
-   If you don't have Poetry installed, you can install it by following the instructions on the [Poetry installation page](https://python-poetry.org/docs/#installation).
+   If you don't have uv installed, you can install it by following the instructions on the [uv installation page](https://docs.astral.sh/uv/#installation).
 
 3. **Install Dependencies:**
 
    ```sh
-   poetry install
+   uv sync
    ```
 
    This command will install all the necessary dependencies for both the application and development.
@@ -36,7 +36,7 @@ To set up the development environment for Resma, you'll need to have Python 3.12
 4. **Activate the Virtual Environment:**
 
    ```sh
-   poetry shell
+   source .venv/bin/activate
    ```
 
 ## Running the Application
