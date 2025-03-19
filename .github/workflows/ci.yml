@@ -18,17 +18,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Installing poetry
-        run: pipx install poetry
+      - name: Installing uv
+        run: pipx install uv
 
       - name: Installing dependencies
-        run: poetry install
+        run: uv sync
 
       - name: Running linters
-        run: poetry run task lint
+        run: uv run task lint
 
       - name: Mypy checking
-        run: poetry run task mypy
+        run: uv run task mypy
 
   test:
     runs-on: ${{ matrix.os }}-latest
@@ -46,11 +46,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Installing poetry
-        run: pipx install poetry
+      - name: Installing uv
+        run: pipx install uv
 
       - name: Installing dependencies
-        run: poetry install
+        run: uv sync
 
       - name: Running tests with pytest
-        run: poetry run task test
+        run: uv run task test
