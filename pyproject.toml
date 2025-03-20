@@ -3,28 +3,34 @@ name = "resma"
 version = "0.1.0"
 description = ""
 authors = [
-	{ name="Thiago Campos", email="commit@thigcampos.com" },
-	{ name="Ivan Santiago", email="ivansantiago.junior@gmail.com"}
+    { name = "Thiago Campos", email = "commit@thigcampos.com" },
+    { name = "Ivan Santiago", email = "ivansantiago.junior@gmail.com" },
 ]
+requires-python = ">=3.12"
 readme = "README.md"
-requires-python = ">=3.12,<4.0"
 dependencies = [
-	"jinja2 (>=3.1.5,<4.0.0)",
-	"markdown (>=3.7,<4.0)",
-	"python-frontmatter (>=1.1.0,<2.0.0)",
-	"toml (>=0.10.2,<0.11.0)",
-	"cyclopts (>=3.4.1,<4.0.0)",
+    "jinja2>=3.1.5",
+    "markdown>=3.7",
+    "python-frontmatter>=1.1.0",
+    "toml>=0.10.2",
+    "cyclopts>=3.4.1",
 ]
 
 [project.scripts]
 resma = "resma.main:app"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.4"
-pytest-cov = "^6.0.0"
-taskipy = "^1.14.1"
-ruff = "^0.9.1"
-mypy = "^1.14.1"
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "taskipy>=1.14.1",
+    "ruff>=0.9.1",
+    "mypy>=1.14.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 pythonpath = "."
@@ -57,7 +63,3 @@ pre_test = 'task lint'
 test = 'pytest -s -x --cov=resma -vv'
 post_test = 'coverage html'
 mypy = "mypy ."
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
