@@ -1,6 +1,6 @@
 version = 1
 revision = 1
-requires-python = ">=3.12, <4.0"
+requires-python = ">=3.12"
 
 [[package]]
 name = "attrs"
@@ -64,7 +64,7 @@ version = "3.4.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "attrs" },
-    { name = "docstring-parser" },
+    { name = "docstring-parser", marker = "python_full_version < '4.0'" },
     { name = "rich" },
     { name = "rich-rst" },
 ]
@@ -333,20 +333,20 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cyclopts", specifier = ">=3.4.1,<4.0.0" },
-    { name = "jinja2", specifier = ">=3.1.5,<4.0.0" },
-    { name = "markdown", specifier = ">=3.7,<4.0" },
-    { name = "python-frontmatter", specifier = ">=1.1.0,<2.0.0" },
-    { name = "toml", specifier = ">=0.10.2,<0.11.0" },
+    { name = "cyclopts", specifier = ">=3.4.1" },
+    { name = "jinja2", specifier = ">=3.1.5" },
+    { name = "markdown", specifier = ">=3.7" },
+    { name = "python-frontmatter", specifier = ">=1.1.0" },
+    { name = "toml", specifier = ">=0.10.2" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "mypy", specifier = ">=1.14.1,<2" },
-    { name = "pytest", specifier = ">=8.3.4,<9" },
-    { name = "pytest-cov", specifier = ">=6.0.0,<7" },
-    { name = "ruff", specifier = ">=0.9.1,<0.10" },
-    { name = "taskipy", specifier = ">=1.14.1,<2" },
+    { name = "mypy", specifier = ">=1.14.1" },
+    { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytest-cov", specifier = ">=6.0.0" },
+    { name = "ruff", specifier = ">=0.9.1" },
+    { name = "taskipy", specifier = ">=1.14.1" },
 ]
 
 [[package]]
@@ -408,7 +408,7 @@ dependencies = [
     { name = "colorama" },
     { name = "mslex", marker = "sys_platform == 'win32'" },
     { name = "psutil" },
-    { name = "tomli" },
+    { name = "tomli", marker = "python_full_version < '4.0'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/c7/44/572261df3db9c6c3332f8618fafeb07a578fd18b06673c73f000f3586749/taskipy-1.14.1.tar.gz", hash = "sha256:410fbcf89692dfd4b9f39c2b49e1750b0a7b81affd0e2d7ea8c35f9d6a4774ed", size = 14475 }
 wheels = [
