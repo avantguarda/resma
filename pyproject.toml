@@ -14,6 +14,8 @@ dependencies = [
     "python-frontmatter>=1.1.0",
     "toml>=0.10.2",
     "cyclopts>=3.4.1",
+    "pymdown-extensions>=10.14.3",
+    "pygments>=2.19.1",
 ]
 
 [project.scripts]

@@ -1,0 +1,12 @@
+.space-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header,
+footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
