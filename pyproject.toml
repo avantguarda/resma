@@ -60,6 +60,6 @@ quote-style = 'single'
 lint = 'ruff check .; ruff check . --diff'
 format = 'ruff check . --fix; ruff format .'
 pre_test = 'task lint'
-test = 'pytest -s -x --cov=hipertexto -vv'
+test = 'pytest -s -x --cov=ht -vv'
 post_test = 'coverage html'
 mypy = "mypy ."
