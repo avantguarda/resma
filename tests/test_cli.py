@@ -3,8 +3,8 @@ import locale
 import pytest
 from rich.text import Text
 
-from resma import __version__
-from resma.main import app
+from ht import __version__
+from ht.main import app
 
 
 def test_start(temp_dir, monkeypatch, capsys: pytest.CaptureFixture):
@@ -30,7 +30,7 @@ def test_start_project_already_exists(
     assert 'File project already exists' in capsys.readouterr().err
 
 
-def test_build_resma_project_not_found(
+def test_build_hipertexto_project_not_found(
     temp_dir, monkeypatch, capsys: pytest.CaptureFixture
 ):
     monkeypatch.chdir(temp_dir)
@@ -39,7 +39,7 @@ def test_build_resma_project_not_found(
         app('build')
 
     assert e.value.code == 1
-    assert 'Not a resma project' in capsys.readouterr().err
+    assert 'Not a hipertexto project' in capsys.readouterr().err
 
 
 def test_build_empty_project(
@@ -60,7 +60,7 @@ def test_build_empty_project(
     )
 
 
-def test_build_resma_table_not_found_in_config_toml(
+def test_build_hipertexto_table_not_found_in_config_toml(
     temp_dir, monkeypatch, capsys: pytest.CaptureFixture
 ):
     monkeypatch.chdir(temp_dir)
@@ -68,7 +68,7 @@ def test_build_resma_table_not_found_in_config_toml(
 
     monkeypatch.chdir('project')
 
-    # erasing resma table from config.toml
+    # erasing hipertexto table from config.toml
     with open(
         'config.toml', 'w', encoding=locale.getpreferredencoding(False)
     ) as f:
@@ -78,13 +78,13 @@ def test_build_resma_table_not_found_in_config_toml(
         app('build')
 
     assert e.value.code == 1
-    assert 'config.toml should have a resma table' in capsys.readouterr().err
+    assert 'config.toml should have a hipertexto table' in capsys.readouterr().err
 
 
 @pytest.mark.parametrize(
     ('args', 'expected_output'),
     [
-        ([], 'resma --help'),
+        ([], 'ht --help'),
         (
             ['--help'],
             'Usage',
@@ -100,10 +100,10 @@ def test_main(args, expected_output, capsys: pytest.CaptureFixture):
     assert expected_output in capsys.readouterr().out
 
 
-def test_build_full_resma_project_ok(
-    full_resma_project, monkeypatch, capsys: pytest.CaptureFixture
+def test_build_full_hipertexto_project_ok(
+    full_hipertexto_project, monkeypatch, capsys: pytest.CaptureFixture
 ):
-    monkeypatch.chdir(full_resma_project)
+    monkeypatch.chdir(full_hipertexto_project)
     result = app('build')
 
     assert not result

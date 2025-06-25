@@ -14,5 +14,5 @@ This is just a test asset!
 
 > local path
 
-resma_cli/process_md.py
+hipertexto_cli/process_md.py
 ![image](./dogs.jpg)
