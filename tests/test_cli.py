@@ -3,8 +3,8 @@ import locale
 import pytest
 from rich.text import Text
 
-from ht import __version__
-from ht.main import app
+from hipertexto import __version__
+from hipertexto.main import app
 
 
 def test_start(temp_dir, monkeypatch, capsys: pytest.CaptureFixture):

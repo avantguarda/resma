@@ -1,5 +1,5 @@
 [project]
-name = "ht"
+name = "hipertexto"
 version = "0.1.0"
 description = ""
 authors = [
@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.scripts]
-ht = "ht.main:app"
+ht = "hipertexto.main:app"
 
 [dependency-groups]
 dev = [

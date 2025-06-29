@@ -12,7 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 from rich.console import Console
 from rich.text import Text
 
-from ht import __version__
+from hipertexto import __version__
 
 from .jinja_globals import rel_path
 from .process_md import process_markdown
