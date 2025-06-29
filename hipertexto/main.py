@@ -50,7 +50,9 @@ def validate_hipertexto_project():
     hipertexto_table = config_toml.get('hipertexto')
 
     if not hipertexto_table:
-        e_console.print('config.toml should have a hipertexto table', style=error)
+        e_console.print(
+            'config.toml should have a hipertexto table', style=error
+        )
         sys.exit(1)
 
 
@@ -185,9 +187,9 @@ def serve(port: int = 8080):
         os.chdir('public')
     except FileNotFoundError:
         e_console.print('public folder not found', style=error)
-        hipertexto_build = Text('hipertexto build', style=success)
+        hipertexto_build = Text('ht build', style=success)
         e_console.print(
-            f'Run {hipertexto_build.markup} before running "hipertexto serve" again'
+            f'Run {hipertexto_build.markup} before running "ht serve" again'
         )
         sys.exit(1)
 
