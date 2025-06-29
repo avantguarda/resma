@@ -78,7 +78,9 @@ def test_build_hipertexto_table_not_found_in_config_toml(
         app('build')
 
     assert e.value.code == 1
-    assert 'config.toml should have a hipertexto table' in capsys.readouterr().err
+    assert (
+        'config.toml should have a hipertexto table' in capsys.readouterr().err
+    )
 
 
 @pytest.mark.parametrize(
