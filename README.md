@@ -7,7 +7,7 @@
 As of now, you can use `pipx` to install Hipertexto in your machine:
 
 ```sh
-pipx install git+https://github.com/brasilisclub/hipertexto
+pipx install git+https://github.com/avantguarda/hipertexto
  ```
 
 ## Setting Up the Development Environment
