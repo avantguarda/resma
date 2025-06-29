@@ -1,5 +1,5 @@
 [project]
-name = "resma"
+name = "hipertexto"
 version = "0.1.0"
 description = ""
 authors = [
@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.scripts]
-resma = "resma.main:app"
+ht = "hipertexto.main:app"
 
 [dependency-groups]
 dev = [
@@ -60,6 +60,6 @@ quote-style = 'single'
 lint = 'ruff check .; ruff check . --diff'
 format = 'ruff check . --fix; ruff format .'
 pre_test = 'task lint'
-test = 'pytest -s -x --cov=resma -vv'
+test = 'pytest -s -x --cov=hipertexto -vv'
 post_test = 'coverage html'
 mypy = "mypy ."

@@ -1,24 +1,24 @@
-# Resma
+# Hipertexto
 
-**Resma** is a static site generator (SSG) written in Python. Below you'll find information on how to set up the development environment, run the application, and run tests. 
+**Hipertexto** is a static site generator (SSG) written in Python. Below you'll find information on how to set up the development environment, run the application, and run tests. 
 
 ## Installation
 
-As of now, you can use `pipx` to install Resma in your machine:
+As of now, you can use `pipx` to install Hipertexto in your machine:
 
 ```sh
-pipx install git+https://github.com/brasilisclub/resma
+pipx install git+https://github.com/brasilisclub/hipertexto
  ```
 
 ## Setting Up the Development Environment
 
-To set up the development environment for Resma, you'll need to have Python 3.12 installed. You can use [uv](https://docs.astral.sh/uv/) to manage dependencies and run commands.
+To set up the development environment for Hipertexto, you'll need to have Python 3.12 installed. You can use [uv](https://docs.astral.sh/uv/) to manage dependencies and run commands.
 
 1. **Clone the Repository:**
 
    ```sh
    git clone <repository-url>
-   cd resma
+   cd hipertexto
    ```
 
 2. **Install uv:**
@@ -44,14 +44,14 @@ To set up the development environment for Resma, you'll need to have Python 3.12
 To run the application, use the following command:
 
 ```sh
-resma
+ht
 ```
 
-This command will start the Resma application as defined in `resma.main:app`.
+This command will start the Hipertexto application as defined in `hipertexto.main:app`.
 
 ## Development Commands
 
-Resma uses `taskipy` for task management. Here are some useful commands:
+Hipertexto uses `taskipy` for task management. Here are some useful commands:
 
 - **Linting:**
 
@@ -101,7 +101,7 @@ Resma uses `taskipy` for task management. Here are some useful commands:
 
 ## Contribution
 
-If you would like to contribute to Resma, please fork the repository and submit a pull request with your changes. Ensure that your changes pass the linting and testing requirements before submitting.
+If you would like to contribute to Hipertexto, please fork the repository and submit a pull request with your changes. Ensure that your changes pass the linting and testing requirements before submitting.
 
 ## Contact
 
@@ -112,6 +112,6 @@ For any questions or support, please contact:
 
 ## License
 
-Resma is licensed under the [GNU General Public License v3.0](LICENSE).
+Hipertexto is licensed under the [GNU General Public License v3.0](LICENSE).
 
-Thank you for using Resma!
+Thank you for using Hipertexto!

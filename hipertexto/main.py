@@ -12,7 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 from rich.console import Console
 from rich.text import Text
 
-from resma import __version__
+from hipertexto import __version__
 
 from .jinja_globals import rel_path
 from .process_md import process_markdown
@@ -21,8 +21,8 @@ from .styles import error, success, warning
 console = Console()
 e_console = Console(stderr=True)
 app = cyclopts.App(
-    name='resma',
-    help='Use resma --help to see the available commands',
+    name='ht',
+    help='Use ht --help to see the available commands',
     version=__version__,
     console=console,
 )
@@ -35,22 +35,24 @@ def sort_by_key(page_metadata, key='title'):
     return page_metadata[key]
 
 
-def validate_resma_project():
+def validate_hipertexto_project():
     # searching for config.toml
     config_file = Path('.') / 'config.toml'
 
     if not config_file.exists():
-        e_console.print('Not a resma project', style='white on red')
+        e_console.print('Not a hipertexto project', style='white on red')
         sys.exit(1)
 
     with config_file.open('rb') as f:
         config_toml = tomllib.load(f)
 
-    # config file should have resma table
-    resma_table = config_toml.get('resma')
+    # config file should have hipertexto table
+    hipertexto_table = config_toml.get('hipertexto')
 
-    if not resma_table:
-        e_console.print('config.toml should have a resma table', style=error)
+    if not hipertexto_table:
+        e_console.print(
+            'config.toml should have a hipertexto table', style=error
+        )
         sys.exit(1)
 
 
@@ -88,7 +90,7 @@ def start(name: str):
 def build():
     """Build your site to the public folder"""
 
-    validate_resma_project()
+    validate_hipertexto_project()
 
     root_path = Path('.')
     directories = {
@@ -185,9 +187,9 @@ def serve(port: int = 8080):
         os.chdir('public')
     except FileNotFoundError:
         e_console.print('public folder not found', style=error)
-        resma_build = Text('resma build', style=success)
+        hipertexto_build = Text('ht build', style=success)
         e_console.print(
-            f'Run {resma_build.markup} before running "resma serve" again'
+            f'Run {hipertexto_build.markup} before running "ht serve" again'
         )
         sys.exit(1)
 

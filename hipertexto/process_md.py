@@ -5,8 +5,8 @@ import frontmatter
 from jinja2 import Environment, TemplateNotFound
 from markdown import markdown  # type: ignore
 
-from resma.images import copy_images_and_update_path
-from resma.utils import calculate_depth
+from hipertexto.images import copy_images_and_update_path
+from hipertexto.utils import calculate_depth
 
 
 def validate_frontmatter(page, file):
